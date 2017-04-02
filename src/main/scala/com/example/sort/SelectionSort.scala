@@ -8,16 +8,16 @@ package com.example.sort
 object SelectionSort {
 
   def selectionSort[A <% Ordered[A]](list: List[A]): List[A] = {
-    def sort(as: List[A], bs: List[A]): List[A] = as match {
-      case h :: t => select(h, t, Nil, bs)
-      case Nil => bs
+    def sort(orgList: List[A], sortedList: List[A]): List[A] = orgList match {
+      case h :: t => select(head = h, tail = t, Nil, sortedList)
+      case Nil => sortedList
     }
-    def select(m: A, as: List[A], zs: List[A], bs: List[A]): List[A] = {
-      as match {
+    def select(head: A, tail: List[A], orgList: List[A], sortedList: List[A]): List[A] = {
+      tail match {
         case h :: t =>
-          if (m > h) select(m, t, h :: zs, bs)
-          else select(h, t, m :: zs, bs)
-        case Nil => sort(zs, m :: bs)
+          if (head > h) select(head = head, tail = t, h :: orgList, sortedList)
+          else select(h, t, head :: orgList, sortedList)
+        case Nil => sort(orgList = orgList, sortedList = head :: sortedList)
       }
     }
     sort(list, Nil)
