@@ -37,6 +37,6 @@ class HashingMethod(list: List[Int]) {
 
   def getValue(v: Int): Option[Int] = {
     val key = getKey(v, list.length)
-    (0 to 2).find(x => getValueFromKey(key + x).contains(v))
+    (0 to list.length).find(x => getValueFromKey(key + x).contains(v))
   }
 }
