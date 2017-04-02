@@ -9,24 +9,22 @@ object BinarySearch {
 
   def binarySearch[A <% Ordered[A]](list: List[A], key: A): Option[A] = {
 
-    def search(l: List[A], r: List[A]): Option[A] =
-      if (l == r) None
-      else test(l, r, middle(l, r))
+    def search(beforeList: List[A], afterList: List[A]): Option[A] =
+      if (beforeList == afterList) None
+      else test(beforeList, afterList, middleList = middle(beforeList, afterList))
 
-    def test(l: List[A], r: List[A], m: List[A]): Option[A] =
-      if (key < m.head) search(l, m)
-      else if (key > m.head) search(m.tail, r)
-      else Some(m.head)
+    def test(beforeList: List[A], afterList: List[A], middleList: List[A]): Option[A] =
+      if (key < middleList.head) search(beforeList = beforeList, middleList)
+      else if (key > middleList.head) search(beforeList = middleList.tail, afterList)
+      else Some(middleList.head)
 
-    def middle(l: List[A], r: List[A]): List[A] = {
-      def race(t: List[A], h: List[A]): List[A] =
-        if (h != r && h.tail != r)
-          race(t.tail, h.tail.tail)
-        else t
-
-      race(l, l.tail)
+    def middle(beforeList: List[A], afterList: List[A]): List[A] = {
+      def race(before: List[A], tail: List[A]): List[A] =
+        if (tail != afterList && tail.tail != afterList)
+          race(before = before.tail, tail = tail.tail.tail)
+        else before
+      race(before = beforeList, tail = beforeList.tail)
     }
-
-    search(list, Nil)
+    search(beforeList = list, afterList = Nil)
   }
 }
