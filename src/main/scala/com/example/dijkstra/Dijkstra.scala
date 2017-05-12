@@ -65,7 +65,7 @@ object Dijkstra extends App {
         val node = q.dequeue()
         graph.nodes.get(node.name).foreach { nodes =>
           nodes.foreach { n =>
-            // 遷移先を登録
+            // 遷移先が自身のノード以外のとき遷移先に遷移した場合のノードデータをキューに登録
             if (!path.contains(n.name)) q += Node(n.name, node.weight + n.weight, Some(node))
           }
         }
