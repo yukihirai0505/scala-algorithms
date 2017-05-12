@@ -14,7 +14,7 @@ import scala.annotation.tailrec
   * │  │ └1─GOAL(4)
   * │  └3─GOAL(5)
   * └1─B
-  * └6─GOAL(7)
+  *     └6─GOAL(7)
   */
 case class Graph(nodes: Map[String, Seq[Node]])
 
