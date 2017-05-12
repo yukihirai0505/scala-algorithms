@@ -59,16 +59,15 @@ object Dijkstra extends App {
 
     @tailrec
     def search(path: Path = Map.empty): Path = {
-      println(q)
-      println(path)
+      //println(path)
       // 遷移先がなくなるまで
       if (q.isEmpty) path
       else {
         val node = q.dequeue()
         graph.nodes.get(node.name).foreach { nodes =>
-          nodes.foreach { n =>
+          nodes.foreach { e =>
             // 遷移先を登録
-            if (!path.contains(n.name)) q += Node(n.name, n.weight + n.weight, Some(n))
+            if (!path.contains(e.name)) q += Node(e.name, node.weight + e.weight, Some(node))
           }
         }
         // 訪問済みなら小さいほう優先
