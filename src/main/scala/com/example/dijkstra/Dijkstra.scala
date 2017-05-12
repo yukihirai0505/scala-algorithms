@@ -63,13 +63,13 @@ object Dijkstra extends App {
       if (q.isEmpty) path
       else {
         val node = q.dequeue()
+        // 遷移先が自身のノード以外のとき遷移先に遷移した場合のノードデータをキューに登録
         graph.nodes.get(node.name).foreach { nodes =>
           nodes.foreach { n =>
-            // 遷移先が自身のノード以外のとき遷移先に遷移した場合のノードデータをキューに登録
             if (!path.contains(n.name)) q += Node(n.name, node.weight + n.weight, Some(node))
           }
         }
-        // 訪問済みなら小さいほう優先
+        // 訪問済みなら小さいほう優先して対象ノードのPATHに上書き登録
         val shortPath = path.get(node.name).map(n => if (node.weight < n.weight) node else n).getOrElse(node)
         search(path + (node.name -> shortPath))
       }
