@@ -1,4 +1,5 @@
 package com.example.sort
+
 /**
   * Best: O(n)
   * Average, Worst: O(n**2)
@@ -6,12 +7,13 @@ package com.example.sort
 object InsertionSort {
   def sort(numbers: List[Int], sorted: List[Int] = List.empty): List[Int] = {
     def insert(num: Int): List[Int] = {
-      for ((tmp, i) <- sorted.zipWithIndex) {
-        if (num < tmp) {
-          return sorted.take(i) ++ List(num) ++ sorted.drop(i)
+      for (i <- sorted.length - 1 to 0 by -1) {
+        if (num > sorted(i)) {
+          val j = i + 1
+          return sorted.take(j) ++ List(num) ++ sorted.drop(j)
         }
       }
-      sorted :+ num
+      num +: sorted
     }
 
     numbers match {
