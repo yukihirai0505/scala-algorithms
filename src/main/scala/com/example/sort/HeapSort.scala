@@ -44,7 +44,9 @@ object HeapSort {
   def heapSort(a: Array[Int]): Array[Int] = {
     buildHeap(a, a.length)
     for (i <- a.indices.reverse) {
+      // swap max to idx
       swap(a, 0, i)
+      // create heap structure again
       heapify(a, 0, i)
     }
     a
