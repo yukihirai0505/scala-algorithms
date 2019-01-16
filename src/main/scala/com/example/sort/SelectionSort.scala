@@ -5,7 +5,7 @@ package com.example.sort
   * Average, Worst: O(n**2)
   *
   * It requires quadratic time even in the best case (i.e., when the array is already sorted).
-  * 
+  *
   */
 object SelectionSort {
   def sort(numbers: List[Int], sorted: List[Int] = List.empty): List[Int] = {
