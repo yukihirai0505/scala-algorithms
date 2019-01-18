@@ -1,8 +1,7 @@
 package com.example.sort
 
 /**
-  * Best: O(n log n)
-  * Average, Worst: O(n log n)
+  * Best, Average, Worst: O(n log n)
   *
   * 1. Assume parent A[idx] is larger than or equal to either of its children
   * 2. Left child is lesser than its parent
