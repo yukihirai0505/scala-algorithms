@@ -33,7 +33,7 @@ object HeapSort {
   }
 
   def buildHeap(a: List[Int]): List[Int] = {
-    val k = a.length / 2
+    val k = a.length / 2 - 1
 
     def loop(heap: List[Int], idx: Int): List[Int] = {
       if (idx < 0) heap
@@ -64,7 +64,7 @@ object HeapSort {
     // -> heap: 9,1,8,7,6,2,4,0,5,3 7 and 1
     // -> heap: 9,7,8,1,6,2,4,0,5,3 5 and 1
     // -> heap: 9,7,8,5,6,2,4,0,1,3
-    // heapSort(List(3, 8, 4, 7, 5, 6, 10, 1, 0, 2, 9))
+    println(heapSort(List(3, 8, 4, 7, 5, 6, 10, 1, 0, 2, 9)))
     // -> heap: 10,9,6,7,8,3,4,1,0,2,5
   }
 }
