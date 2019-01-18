@@ -13,7 +13,6 @@ object RadixSort {
   }
 
   def sort(a: List[Int], maxDigits: Int): List[Int] = {
-    // 1桁目から順に対象の箱にいれていくこと
     def radixSort(sorted: List[Int], digit: Int = 1): List[Int] = {
       if (digit > maxDigits) sorted
       else {
