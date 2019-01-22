@@ -1,30 +1,28 @@
 package com.example.search
 
 /**
-  * Binary Search https://en.wikipedia.org/wiki/Binary_search_algorithm
   *
-  * Created by yukihirai on 2017/04/02.
+  * Binary Search
+  *
+  * Best: O(1)
+  * Average, Worst: O(log n)
+  *
+  * 1. Repeat while there is a range to be seached
+  * 2. Midpoint computed using integer arithmetic
+  * 3. "Variations" discusses how to support a "search-or-insert" operation based on final value of mid at this point
+  *
   */
 object BinarySearch {
 
-  def binarySearch[A <% Ordered[A]](list: List[A], key: A): Option[A] = {
+  def binarySearch(list: List[Int], target: Int): Option[Int] = {
 
-    def search(beforeList: List[A], afterList: List[A]): Option[A] =
-      if (beforeList == afterList) None
-      else test(beforeList, afterList, middleList = middle(beforeList, afterList))
-
-    def test(beforeList: List[A], afterList: List[A], middleList: List[A]): Option[A] =
-      if (key < middleList.head) search(beforeList = beforeList, middleList)
-      else if (key > middleList.head) search(beforeList = middleList.tail, afterList)
-      else Some(middleList.head)
-
-    def middle(beforeList: List[A], afterList: List[A]): List[A] = {
-      def race(before: List[A], tail: List[A]): List[A] =
-        if (tail != afterList && tail.tail != afterList)
-          race(before = before.tail, tail = tail.tail.tail)
-        else before
-      race(before = beforeList, tail = beforeList.tail)
+    def search(low: Int, high: Int): Option[Int] = (low + high) / 2 match {
+      case _ if high < low => None
+      case mid if list(mid) > target => search(low, mid - 1)
+      case mid if list(mid) < target => search(mid + 1, high)
+      case mid => Some(mid)
     }
-    search(beforeList = list, afterList = Nil)
+
+    search(0, list.size - 1)
   }
 }

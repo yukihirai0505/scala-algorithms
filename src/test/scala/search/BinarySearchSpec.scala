@@ -5,11 +5,11 @@ import org.scalatest._
 
 class BinarySearchSpec extends FlatSpec with Matchers {
   "BinarySearch" should "binarySearch Found" in {
-    val list = List(4, 2, 3, 5, 1).sorted
-    BinarySearch.binarySearch[Int](list, 5) === Some(5)
+    val list = List(1, 2, 3, 4, 5)
+    BinarySearch.binarySearch(list, 5) === Some(5)
   }
   "BinarySearch" should "binarySearch NotFound" in {
-    val list = List(4, 2, 3, 5, 1).sorted
-    BinarySearch.binarySearch[Int](list, 9) === None
+    val list = List(1, 2, 3, 4, 5)
+    BinarySearch.binarySearch(list, 9) === None
   }
 }
